@@ -1,5 +1,6 @@
 package com.amrut.prabhu;
 
+import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,11 @@ public class Controller {
         this.restTemplate = restTemplate;
     }
 
+    @Observed(
+            name = "file.creation",
+            contextualName = "observed annotation showcase",
+            lowCardinalityKeyValues = {"class.name", "ObservedFileCreationService"}
+    )
     @GetMapping("/path1")
     public ResponseEntity path1() {
 

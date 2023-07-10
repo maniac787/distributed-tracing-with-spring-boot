@@ -9,6 +9,36 @@ tracing:
   url: http://localhost:4318/v1/traces
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: [ prometheus, "*" ]
+        exclude:
+    jmx:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: app-metrics-rch
+
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: 'true'
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+      show-details: always
+    prometheus:
+      enabled: true
+  otlp:
+    metrics:
+      export:
+        url: "https://localhost:4318/v1/metrics"
   tracing:
     sampling:
       probability: 1.0
