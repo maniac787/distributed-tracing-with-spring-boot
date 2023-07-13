@@ -16,3 +16,5 @@ Service 2
 ```
 java -jar target/Distributed-Service-0.0.1-SNAPSHOT.jar --spring.application.name=Service-2 --server.port=8090
 ```
+
+sudo tcpdump -i any "host localhost and (port 4318 or port 4317)"

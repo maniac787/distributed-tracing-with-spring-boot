@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="info">
+    <Appenders>
+        <Console name="CONS" target="SYSTEM_OUT" follow="true">
+            <JsonTemplateLayout>
+<!--                <EventTemplateAdditionalField key="HOME_DIR" value="${env:HOME}"/>-->
+                <JsonTemplateLayout eventTemplateUri="classpath:EcsLayout.json"/>
+            </JsonTemplateLayout>
+        </Console>
+        <Socket name="OTEL" host="localhost" port="4318">
+            <JsonTemplateLayout eventTemplateUri="classpath:EcsLayout.json"/>
+        </Socket>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="CONS"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,5 +1,6 @@
 package com.amrut.prabhu;
 
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +31,9 @@ public class Controller {
             lowCardinalityKeyValues = {"class.name", "ObservedFileCreationService"}
     )
     @GetMapping("/path1")
+    @Timed(value = "greeting.time", description = "Time taken to return greeting")
     public ResponseEntity path1() {
-
+        LoggerFactory.getLogger(getClass()).info("Hello");
         logger.info("Incoming request at {} for request /path1 ", applicationName);
         String response = restTemplate.getForObject("http://localhost:8090/service/path2", String.class);
         return ResponseEntity.ok("response from /path1 + " + response);
