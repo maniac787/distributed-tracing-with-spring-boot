@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<Configuration status="info">
+<Configuration status="WARN" packages="io.opentelemetry.instrumentation.log4j.appender.v2_17">
     <Appenders>
-        <Console name="CONS" target="SYSTEM_OUT" follow="true">
-            <JsonTemplateLayout>
-<!--                <EventTemplateAdditionalField key="HOME_DIR" value="${env:HOME}"/>-->
-                <JsonTemplateLayout eventTemplateUri="classpath:EcsLayout.json"/>
-            </JsonTemplateLayout>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="log4j2: %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <Socket name="OTEL" host="localhost" port="4318">
-            <JsonTemplateLayout eventTemplateUri="classpath:EcsLayout.json"/>
-        </Socket>
+        <OpenTelemetry name="OpenTelemetryAppender" captureMapMessageAttributes="true" captureExperimentalAttributes="true"/>
     </Appenders>
     <Loggers>
         <Root level="info">
-            <AppenderRef ref="CONS"/>
+            <AppenderRef ref="OpenTelemetryAppender" />
+            <AppenderRef ref="ConsoleAppender" />
         </Root>
     </Loggers>
 </Configuration>
