@@ -1,7 +1,7 @@
 package com.amrut.prabhu;
 
 
-import io.opentelemetry.exporter.otlp.http.logs.OtlpHttpLogRecordExporter;
+//import io.opentelemetry.exporter.otlp.http.logs.OtlpHttpLogRecordExporter;
 import io.opentelemetry.exporter.otlp.http.metrics.OtlpHttpMetricExporter;
 import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ public class OtlpConfiguration {
         return registry -> registry.config().commonTags("application", "app");
     }*/
 
-    @Bean
+    /*@Bean
     OtlpHttpSpanExporter otlpHttpSpanExporter(@Value("${tracing.url}") String url) {
         return OtlpHttpSpanExporter.builder()
                 .setEndpoint(url)
@@ -29,13 +29,13 @@ public class OtlpConfiguration {
         return OtlpHttpMetricExporter.builder()
                 .setEndpoint(url)
                 .build();
-    }
+    }*/
 
 
-    @Bean
-    OtlpHttpLogRecordExporter otlpHttpLogRecordExporter(@Value("${logs.url}") String url) {
-        return OtlpHttpLogRecordExporter.builder().setEndpoint(url).build();
-    }
+//    @Bean
+//    OtlpHttpLogRecordExporter otlpHttpLogRecordExporter(@Value("${logs.url}") String url) {
+//        return OtlpHttpLogRecordExporter.builder().setEndpoint(url).build();
+//    }
 
 //    private static final Logger log = LoggerFactory.getLogger(OtlpConfiguration.class);
 
