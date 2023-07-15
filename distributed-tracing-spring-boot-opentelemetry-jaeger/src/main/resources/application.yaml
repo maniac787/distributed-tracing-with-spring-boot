@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8091
 
 spring:
   application:
@@ -10,6 +10,9 @@ tracing:
 
 metrics:
   url: http://localhost:4318/v1/metrics
+
+logs:
+  url: http://192.168.1.33:4318/v1/logs
 
 management:
   endpoints:
@@ -38,15 +41,21 @@ management:
       show-details: always
     prometheus:
       enabled: true
+# autoconfiguration
   otlp:
     metrics:
       export:
         url: "https://localhost:4318/v1/metrics"
+        enabled: true
+    tracing:
+      endpoint: "https://localhost:4318/v1/traces"
   tracing:
     sampling:
       probability: 1.0
 
 logging:
   pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+    level: trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flags=%mdc{trace_flags} %5p
 
+io.opentelemetry.level: FINE

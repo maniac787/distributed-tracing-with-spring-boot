@@ -11,27 +11,57 @@ java {
 	sourceCompatibility = '17'
 }
 
+ext{
+	otlp = "1.28.0"
+}
+
 repositories {
 	mavenCentral()
 }
 
-configurations {
-	all {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-	}
-}
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation ('org.springframework.boot:spring-boot-starter-web'){
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-	}
+	implementation ('org.springframework.boot:spring-boot-starter-web')
 
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'io.micrometer:micrometer-tracing-bridge-otel'
 	implementation 'io.micrometer:micrometer-registry-prometheus'
-	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
-	implementation 'io.opentelemetry:opentelemetry-sdk'
+
+	implementation "io.opentelemetry:opentelemetry-exporter-otlp:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-exporter-otlp-common:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-exporter-common:${otlp}"
+
+	implementation "io.opentelemetry:opentelemetry-sdk:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-sdk-common:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-sdk-metrics:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-sdk-trace:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-api:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-context:${otlp}"
+	implementation "io.opentelemetry:opentelemetry-extension-trace-propagators:${otlp}"
+
+	implementation "io.opentelemetry:opentelemetry-sdk-logs:${otlp}"
+	// https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api-logs
+	implementation 'io.opentelemetry:opentelemetry-api-logs:1.26.0-alpha'
+
+	implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:1.28.0-alpha'
+
+	runtimeOnly("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:1.28.0-alpha")
+
+//	implementation "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:${otlp}"
+
+
+
+
+
+
+
+
+
+
+// https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-logback-mdc-1.0
+//	runtimeOnly 'io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:1.25.1-alpha'
+
+	runtimeOnly("io.opentelemetry.instrumentation:opentelemetry-logback-1.0:1.9.2-alpha")
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
