@@ -50,7 +50,7 @@ management:
     tracing:
       endpoint: ${OTLP_URL_LOCAL}:${OTLP_PORT}/v1/traces
     logs:
-      endpoint: ${OTLP_URL}:${OTLP_PORT}/v1/logs
+      endpoint: ${OTLP_URL_LOCAL}:${OTLP_PORT}/v1/logs
   tracing:
     sampling:
       probability: 1.0
