@@ -50,15 +50,11 @@ management:
     tracing:
       endpoint: ${OTLP_URL_LOCAL}:${OTLP_PORT}/v1/traces
     logs:
-      endpoint: ${OTLP_URL_LOCAL}:${OTLP_PORT}/v1/logs
+      endpoint: ${OTLP_URL}:${OTLP_PORT}/v1/logs
   tracing:
     sampling:
       probability: 1.0
 
 logging:
   pattern:
-#    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
     level: trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flags=%mdc{trace_flags} %5p
-#    level: trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flags=%mdc{trace_flags} %5p
-
-io.opentelemetry.level: FINE

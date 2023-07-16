@@ -18,3 +18,5 @@ java -jar build/libs/Distributed-Service-0.0.1-SNAPSHOT.jar --spring.application
 ```
 
 sudo tcpdump -i any "host localhost and (port 4318 or port 4317)"
+
+https://opentelemetry.io/docs/instrumentation/java/manual/

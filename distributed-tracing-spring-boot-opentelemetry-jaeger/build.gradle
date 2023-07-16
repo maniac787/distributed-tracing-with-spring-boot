@@ -12,13 +12,18 @@ java {
 }
 
 ext{
-	otlp = "1.28.0"
+	otlpVersion = "1.28.0"
 }
 
 repositories {
 	mavenCentral()
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "io.opentelemetry:opentelemetry-bom:${otlpVersion}"
+	}
+}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -28,8 +33,14 @@ dependencies {
 	implementation 'io.micrometer:micrometer-tracing-bridge-otel'
 	implementation 'io.micrometer:micrometer-registry-prometheus'
 
+
+	implementation 'io.opentelemetry:opentelemetry-api'
+	implementation 'io.opentelemetry:opentelemetry-sdk'
+	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
+	implementation 'io.opentelemetry:opentelemetry-semconv:1.28.0-alpha'
+
 	implementation "io.opentelemetry:opentelemetry-exporter-otlp"
-	implementation "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:1.28.0"
+	implementation "io.opentelemetry:opentelemetry-sdk-extension-autoconfigure"
 
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
