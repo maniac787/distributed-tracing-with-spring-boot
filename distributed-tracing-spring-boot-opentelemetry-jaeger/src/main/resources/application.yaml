@@ -45,10 +45,10 @@ management:
   otlp:
     metrics:
       export:
-        url: ${OTLP_URL_LOCAL}:${OTLP_PORT}/v1/metrics
+        url: ${OTLP_URL}:${OTLP_PORT}/v1/metrics
         enabled: true
     tracing:
-      endpoint: ${OTLP_URL_LOCAL}:${OTLP_PORT}/v1/traces
+      endpoint: ${OTLP_URL}:${OTLP_PORT}/v1/traces
     logs:
       endpoint: ${OTLP_URL}:${OTLP_PORT}/v1/logs
   tracing:

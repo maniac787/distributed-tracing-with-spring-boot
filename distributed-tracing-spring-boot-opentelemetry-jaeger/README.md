@@ -20,3 +20,7 @@ java -jar build/libs/Distributed-Service-0.0.1-SNAPSHOT.jar --spring.application
 sudo tcpdump -i any "host localhost and (port 4318 or port 4317)"
 
 https://opentelemetry.io/docs/instrumentation/java/manual/
+https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/logback/logback-mdc-1.0/library
+
+https://newreleases.io/project/github/open-telemetry/opentelemetry-java-instrumentation/release/v1.28.0
+https://newreleases.io/project/github/open-telemetry/opentelemetry-java-instrumentation/release/v1.10.0
